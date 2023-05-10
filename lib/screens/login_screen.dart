@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tienda/firebase/firebase_auth.dart';
 import 'package:tienda/firebase/firebase_google_auth.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
@@ -135,6 +136,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () async {
                           try {
                             await FireBaseGoogleAuth().signInWithGoogle();
+                            final _prefs = await SharedPreferences.getInstance();
+                            await _prefs.setBool('logged', true);
                             Navigator.popAndPushNamed(context, '/dash');
                             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
                           } catch (e) {
@@ -151,6 +154,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () async {  
                           try {
                             await FirebaseFacebookAuth().signInWithFacebook();
+                            final _prefs = await SharedPreferences.getInstance();
+                            await _prefs.setBool('logged', true);
                             Navigator.popAndPushNamed(context, '/dash');
                             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
                           } catch (e) {
@@ -167,6 +172,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () async {  
                           try {
                             await FirebaseGithubAuth().gitHubSign(context);
+                            final _prefs = await SharedPreferences.getInstance();
+                            await _prefs.setBool('logged', true);
                             Navigator.popAndPushNamed(context, '/dash');
                             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
                           } catch (e) {
