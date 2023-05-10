@@ -7,6 +7,7 @@ import 'package:tienda/firebase/firebase_google_auth.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 
 import '../firebase/firebase_facebook_auth.dart';
+import '../firebase/firebase_github_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -163,8 +164,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: 20,
                         mode: SocialLoginButtonMode.single,
                         text: '',
-                        onPressed: () {  
-                  
+                        onPressed: () async {  
+                          try {
+                            await FirebaseGithubAuth().gitHubSign(context);
+                            Navigator.popAndPushNamed(context, '/dash');
+                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text('Error: $e')));
+                          }
                         },                      
                       ),
                     ],

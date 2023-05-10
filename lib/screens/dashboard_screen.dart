@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
+import 'package:tienda/firebase/firebase_github_auth.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -98,6 +100,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               onTap: () async {
                 await GoogleSignIn().signOut();
                 await FacebookAuth.instance.logOut();
+                await FirebaseGithubAuth().signOut();
                 await _auth.signOut();
                 Navigator.pushNamed(context, '/welcome');
               },
