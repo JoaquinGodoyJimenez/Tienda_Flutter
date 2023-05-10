@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "897825452999",
+    "project_id": "mrjc-tienda",
+    "storage_bucket": "mrjc-tienda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897825452999:android:ea51855d25ad56a3be9fe2",
+        "android_client_info": {
+          "package_name": "com.mrjctienda.tienda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "897825452999-tdupq2fj7hfepjbeksre6pn87rpkgtlf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoKLuF0_7ZRyoKAHoYmF4Ked2NTp4UXeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "897825452999-tdupq2fj7hfepjbeksre6pn87rpkgtlf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
