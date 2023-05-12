@@ -19,7 +19,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   void _newEmail() {
     if (_btnNewEmail) {
-      //codigo
+      FirebaseAuth.instance.currentUser?.sendEmailVerification();      
       setState(() {
         _btnNewEmail = false;
       });

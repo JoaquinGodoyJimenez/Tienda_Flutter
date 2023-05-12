@@ -53,6 +53,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             UserAccountsDrawerHeader(
               currentAccountPicture: CircleAvatar(
                 backgroundImage: NetworkImage(userPhoto!),
+                backgroundColor: Colors.white,
               ),
               accountName:  Text(userName!), 
               accountEmail: Text(userEmail)

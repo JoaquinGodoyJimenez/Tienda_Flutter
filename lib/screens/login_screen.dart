@@ -282,6 +282,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
+                  const SizedBox(width: 15,),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/resetpassword');
+                    }, 
+                    child: Text(
+                      'Olvidé la contraseña', 
+                      style: GoogleFonts.montserrat(
+                        textStyle: const TextStyle(
+                          fontSize: 12,
+                          decoration: TextDecoration.underline
+                        )
+                      ),
+                    )
+                  ),
                   const SizedBox(height: 30,),
                 ],
               ),
