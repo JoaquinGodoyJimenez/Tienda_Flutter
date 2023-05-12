@@ -16,18 +16,17 @@ class FirebaseGithubAuth {
         var authResult = await FirebaseAuth.instance.signInWithCredential(
           GithubAuthProvider.credential(result.token.toString()),
         );
-        print('Usuario autenticado con Firebase: ${authResult.user!.displayName}');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Ingresando. Espere un momento por favor.')));
         break;
       case GitHubSignInResultStatus.cancelled:
       case GitHubSignInResultStatus.failed:
-        print(result.errorMessage);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error. ${result.errorMessage}')));
         break;
     }
   }
 
   signOut() async {
     await FirebaseAuth.instance.signOut();
-    print('Usuario desconectado');
   }
 
 }

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tienda/firebase/firebase_auth.dart';
 import 'package:tienda/firebase/firebase_google_auth.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
+import 'package:tienda/firebase/user_firebase.dart';
 
 import '../firebase/firebase_facebook_auth.dart';
 import '../firebase/firebase_github_auth.dart';
@@ -18,13 +20,16 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
-    EmailAuth emailAuth = EmailAuth();
     final formKey = GlobalKey<FormState>();
-    bool login = false;
+    UserFirebase _firebase = UserFirebase();
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+
 
     handleSubmit() async {
     if (!formKey.currentState!.validate()) return;
@@ -32,9 +37,22 @@ class _LoginScreenState extends State<LoginScreen> {
     final password = passwordController.value.text.trim();
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
-      Navigator.popAndPushNamed(context, '/dash');
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
+      if (FirebaseAuth.instance.currentUser!.emailVerified) {
+        final _prefs = await SharedPreferences.getInstance();
+        await _prefs.setBool('logged', true);
+        Navigator.popAndPushNamed(context, '/dash');
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
+      }else{
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('No has verificado tu correo')));
+        Navigator.popAndPushNamed(context, '/verification');
+      }
+      setState(() {
+        isLoading = false;
+      });        
     } on FirebaseAuthException catch (e) {
+      setState(() {
+        isLoading = false;
+      });     
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text('Error: $e')));
     }
   }
@@ -46,7 +64,13 @@ class _LoginScreenState extends State<LoginScreen> {
         centerTitle: true,
         backgroundColor: Colors.green.shade800,
       ),
-      body: SafeArea(
+      body: isLoading
+      ? 
+      const Center(
+        child: SizedBox(width: 200,child: LinearProgressIndicator()),
+      )
+      :
+      SafeArea(
         child: Center(
           child: SingleChildScrollView(
             child: Form(
@@ -116,7 +140,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 30,),
                   ElevatedButton(
-                    onPressed: () => handleSubmit(), 
+                    onPressed: () {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      handleSubmit();
+                    } , 
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green.shade800,
                       minimumSize: const Size(200, 50),
@@ -134,15 +163,38 @@ class _LoginScreenState extends State<LoginScreen> {
                         mode: SocialLoginButtonMode.single,
                         text: '',
                         onPressed: () async {
+                          setState(() {
+                            isLoading = true;
+                          });
                           try {
-                            await FireBaseGoogleAuth().signInWithGoogle();
-                            final _prefs = await SharedPreferences.getInstance();
-                            await _prefs.setBool('logged', true);
-                            Navigator.popAndPushNamed(context, '/dash');
-                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
+                            await FireBaseGoogleAuth(context).signInWithGoogle();
+                            User? user = _auth.currentUser;
+                            String email = user?.email.toString() ?? '';
+                            String name = user?.displayName.toString() ?? '';
+                            String? proveedor =  await _firebase.getUserProvider(email);
+                            if (proveedor == null && email != '') {
+                              _firebase.insUser({
+                                'email' : email,
+                                'name' : name,
+                                'provider' : 'Google',
+                              });
+                              proveedor =  await _firebase.getUserProvider(email);
+                            }
+                            if (proveedor == 'Google') {
+                              final _prefs = await SharedPreferences.getInstance();
+                              await _prefs.setBool('logged', true);
+                              Navigator.popAndPushNamed(context, '/dash');
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
+                            }else{
+                              await GoogleSignIn().signOut();
+                            }
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text('Error: $e')));
-                          }                                   
+                          }finally{
+                            setState(() {
+                              isLoading = false;
+                            }); 
+                          }                                  
                         },                      
                       ),
                       const SizedBox(width: 15,),
@@ -151,16 +203,40 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: 20,
                         mode: SocialLoginButtonMode.single,
                         text: '',
-                        onPressed: () async {  
+                        onPressed: () async { 
+                          setState(() {
+                            isLoading = true;
+                          }); 
                           try {
-                            await FirebaseFacebookAuth().signInWithFacebook();
-                            final _prefs = await SharedPreferences.getInstance();
-                            await _prefs.setBool('logged', true);
-                            Navigator.popAndPushNamed(context, '/dash');
-                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
+                            await FirebaseFacebookAuth(context).signInWithFacebook();
+                            User? user = _auth.currentUser;
+                            String email = user?.email.toString() ?? '';
+                            String name = user?.displayName.toString() ?? '';
+                            String? proveedor =  await _firebase.getUserProvider(email); 
+                            if (proveedor == null && email != '') {
+                              _firebase.insUser({
+                                'email' : email,
+                                'name' : name,
+                                'provider' : 'Facebook',
+                              });
+                              proveedor =  await _firebase.getUserProvider(email);
+                            }     
+                            if (proveedor == 'Facebook') {
+                              final _prefs = await SharedPreferences.getInstance();
+                              await _prefs.setBool('logged', true);
+                              Navigator.popAndPushNamed(context, '/dash');
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
+                            }else{
+                              await FirebaseGithubAuth().signOut();
+                              await _auth.signOut();
+                            }                                                  
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text('Error: $e')));
-                          }   
+                          } finally{
+                            setState(() {
+                              isLoading = false;
+                            }); 
+                          }                           
                         },                      
                       ),
                       const SizedBox(width: 15,),
@@ -170,15 +246,38 @@ class _LoginScreenState extends State<LoginScreen> {
                         mode: SocialLoginButtonMode.single,
                         text: '',
                         onPressed: () async {  
+                          setState(() {
+                              isLoading = true;
+                          }); 
                           try {
                             await FirebaseGithubAuth().gitHubSign(context);
-                            final _prefs = await SharedPreferences.getInstance();
-                            await _prefs.setBool('logged', true);
-                            Navigator.popAndPushNamed(context, '/dash');
-                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
+                            User? user = _auth.currentUser;
+                            String email = user?.email.toString() ?? '';
+                            String name = user?.displayName.toString() ?? '';
+                            String? proveedor =  await _firebase.getUserProvider(email); 
+                            if (proveedor == null && email != '') {
+                              _firebase.insUser({
+                                'email' : email,
+                                'name' : name,
+                                'provider' : 'Github',
+                              });
+                              proveedor =  await _firebase.getUserProvider(email);
+                            } 
+                            if (proveedor == 'Github') {
+                              final _prefs = await SharedPreferences.getInstance();
+                              await _prefs.setBool('logged', true);
+                              Navigator.popAndPushNamed(context, '/dash');
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
+                            }else{
+                              await FacebookAuth.instance.logOut();
+                            }   
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text('Error: $e')));
-                          }
+                          }finally{
+                            setState(() {
+                              isLoading = false;
+                            }); 
+                          }  
                         },                      
                       ),
                     ],

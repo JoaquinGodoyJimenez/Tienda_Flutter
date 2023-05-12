@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tienda/firebase/firebase_github_auth.dart';
+import 'package:tienda/firebase/user_firebase.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -17,8 +18,20 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    User? user = _auth.currentUser;
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
+    UserFirebase userFirebase = UserFirebase();
+    String? userEmail = auth.currentUser?.email.toString() ?? '';
+    String? userName = auth.currentUser?.displayName.toString();
+    String? userPhoto = auth.currentUser?.photoURL.toString();
+
+    if (userName == 'null') {
+      userName = 'Usuario conectado:';
+    }
+
+    if (userPhoto == 'null') {
+      userPhoto = 'https://www.grouphealth.ca/wp-content/uploads/2018/05/placeholder-image.png';
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -39,10 +52,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
           children: [
             UserAccountsDrawerHeader(
               currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage(user?.photoURL ?? 'https://www.grouphealth.ca/wp-content/uploads/2018/05/placeholder-image.png'),
+                backgroundImage: NetworkImage(userPhoto!),
               ),
-              accountName:  Text(user?.displayName.toString() ?? 'Usuario conectado'), 
-              accountEmail: Text(user?.email.toString() ?? 'Error al recuperar el correo.')
+              accountName:  Text(userName!), 
+              accountEmail: Text(userEmail)
             ),
             ListTile(
               onTap: () => Navigator.pushNamed(context, '/theme'),
@@ -56,7 +69,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 await GoogleSignIn().signOut();
                 await FacebookAuth.instance.logOut();
                 await FirebaseGithubAuth().signOut();
-                await _auth.signOut();
+                await auth.signOut();
                 final _prefs = await SharedPreferences.getInstance();
                 await _prefs.setBool('logged', false);
                 Navigator.pop(context);
