@@ -8,6 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tienda/firebase/firebase_github_auth.dart';
 import 'package:tienda/firebase/user_firebase.dart';
 
+import '../provider/font_provider.dart';
+
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
 
@@ -24,7 +26,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
     String? userEmail = auth.currentUser?.email.toString() ?? '';
     String? userName = auth.currentUser?.displayName.toString();
     String? userPhoto = auth.currentUser?.photoURL.toString();
-
+    final fontProvider = Provider.of<FontProvider>(context);
+    late String font =  fontProvider.selectedFontFamily;
+    
     if (userName == 'null') {
       userName = 'Usuario conectado:';
     }
@@ -35,18 +39,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tienda'),
+        centerTitle: true,
+        title: Text(
+          'Tienda',
+          style: TextStyle(
+            fontFamily: font
+          ),
+        ),
       ),
-      body:  const Text('Bienvenido'),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: (){
-          Navigator.pushNamed(context, '/add').then((value) {
-            setState(() {});
-          });
-        },
-        label: const Text('Add post!'),
-        icon: const Icon(Icons.add_comment),
-      ),
+      body: Text('Bienvenido', style: TextStyle(
+        fontFamily: font
+      )),
       drawer: Drawer(
         child: ListView(
           children: [
@@ -55,13 +58,50 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 backgroundImage: NetworkImage(userPhoto!),
                 backgroundColor: Colors.white,
               ),
-              accountName:  Text(userName!), 
-              accountEmail: Text(userEmail)
+              accountName:  Text(
+                userName!,
+                style: TextStyle(
+                  fontFamily: font
+                ),
+              ), 
+              accountEmail: Text(
+                userEmail,
+                style: TextStyle(
+                  fontFamily: font
+                ),
+              )
             ),
             ListTile(
               onTap: () => Navigator.pushNamed(context, '/theme'),
-              title: const Text('Configuración del tema'),
-              subtitle: const Text('Cambie el tema de la app.'),
+              title: Text(
+                'Cambiar tema',
+                style: TextStyle(
+                  fontFamily: font
+                ),
+              ),
+              subtitle: Text(
+                'Cambie el tema de la app.',
+                style: TextStyle(
+                  fontFamily: font
+                ),
+              ),
+              leading: const Icon(Icons.settings),
+              trailing: const Icon(Icons.chevron_right),
+            ),
+            ListTile(
+              onTap: () => Navigator.pushNamed(context, '/font'),
+              title: Text(
+                'Cambiar tipo de letra',
+                style: TextStyle(
+                  fontFamily: font
+                ),
+              ),
+              subtitle: Text(
+                'Cambie el tipo de letra.',
+                style: TextStyle(
+                  fontFamily: font
+                ),
+              ),
               leading: const Icon(Icons.settings),
               trailing: const Icon(Icons.chevron_right),
             ),
@@ -76,8 +116,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Navigator.pop(context);
                 Navigator.popAndPushNamed(context, '/welcome');
               },
-              title: const Text('Cerrar Sesión'),
-              subtitle: const Text('Regresar a la pantalla de inicio.'),
+              title: Text(
+                'Cerrar Sesión',
+                style: TextStyle(
+                  fontFamily: font
+                ),
+              ),
+              subtitle: Text(
+                'Regresar al inicio.',
+                style: TextStyle(
+                  fontFamily: font
+                ),
+              ),
               leading: const Icon(Icons.exit_to_app),
               trailing: const Icon(Icons.chevron_right),
             ),

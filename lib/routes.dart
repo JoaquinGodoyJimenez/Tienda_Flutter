@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tienda/screens/dashboard_screen.dart';
 import 'package:tienda/screens/email_verification_screen.dart';
+import 'package:tienda/screens/font_configuration_screen.dart';
 import 'package:tienda/screens/login_screen.dart';
 import 'package:tienda/screens/password_reset_screen.dart';
 import 'package:tienda/screens/register_screen.dart';
@@ -16,5 +17,6 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     '/dash': (BuildContext context) => const DashboardScreen(), 
     '/welcome': (BuildContext context) => const WelcomeScreen(),
     '/theme': (BuildContext context) => const ThemeConfigurationScreen(), 
+    '/font': (BuildContext context) => const FontConfigurationScreen(), 
   };
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tienda/provider/font_provider.dart';
 
 import '../provider/theme_provider.dart';
 import '../settings/styles_settings.dart';
@@ -22,9 +23,17 @@ class _ThemeConfigurationScreenState extends State<ThemeConfigurationScreen> {
   
   @override
   Widget build(BuildContext context) {
+  final fontProvider = Provider.of<FontProvider>(context);
+  late String font =  fontProvider.selectedFontFamily;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Selector de tema'),
+        title: Text(
+          'Selector de tema',
+          style: TextStyle(
+            fontFamily: font
+          ),
+        ),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -42,7 +51,7 @@ class _ThemeConfigurationScreenState extends State<ThemeConfigurationScreen> {
                       theme.setthemeData(StyleSettings.lightTheme(context), 'lightTheme');
                     }, 
                     icon: const Icon(Icons.sunny), 
-                    label: const Text('Tema claro'),
+                    label: Text('Tema claro', style: TextStyle(fontFamily: font)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green.shade400,
                       minimumSize: const Size(150, 50)
@@ -54,7 +63,7 @@ class _ThemeConfigurationScreenState extends State<ThemeConfigurationScreen> {
                       theme.setthemeData(StyleSettings.darkTheme(context), 'darkTheme');
                     }, 
                     icon: const Icon(Icons.nightlight), 
-                    label: const Text('Tema oscuro'),
+                    label: Text('Tema oscuro', style: TextStyle(fontFamily: font)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green.shade900,
                       minimumSize: const Size(150, 50)
@@ -72,7 +81,7 @@ class _ThemeConfigurationScreenState extends State<ThemeConfigurationScreen> {
                       theme.setthemeData(StyleSettings.lightBlueTheme(context), 'lightBlueTheme');
                     }, 
                     icon: const Icon(Icons.sunny), 
-                    label: const Text('Azul día'),
+                    label: Text('Azul día', style: TextStyle(fontFamily: font)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue.shade300,
                       minimumSize: const Size(150, 50)
@@ -84,7 +93,7 @@ class _ThemeConfigurationScreenState extends State<ThemeConfigurationScreen> {
                       theme.setthemeData(StyleSettings.darkBlueTheme(context), 'darkBlueTheme');
                     }, 
                     icon: const Icon(Icons.nightlight), 
-                    label: const Text('Azul noche'),
+                    label: Text('Azul noche', style: TextStyle(fontFamily: font)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue.shade900,
                       minimumSize: const Size(150, 50)
@@ -102,7 +111,7 @@ class _ThemeConfigurationScreenState extends State<ThemeConfigurationScreen> {
                       theme.setthemeData(StyleSettings.lightRedTheme(context), 'lightRedTheme');
                     }, 
                     icon: const Icon(Icons.sunny), 
-                    label: const Text('Rojo día'),
+                    label: Text('Rojo día', style: TextStyle(fontFamily: font)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red.shade300,
                       minimumSize: const Size(150, 50)
@@ -114,7 +123,7 @@ class _ThemeConfigurationScreenState extends State<ThemeConfigurationScreen> {
                       theme.setthemeData(StyleSettings.darkRedTheme(context), 'darkRedTheme');
                     }, 
                     icon: const Icon(Icons.nightlight), 
-                    label: const Text('Rojo noche'),
+                    label: Text('Rojo noche', style: TextStyle(fontFamily: font)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red.shade900,
                       minimumSize: const Size(150, 50)
@@ -132,7 +141,7 @@ class _ThemeConfigurationScreenState extends State<ThemeConfigurationScreen> {
                       theme.setthemeData(StyleSettings.lightPurpleTheme(context), 'lightPurpleTheme');
                     }, 
                     icon: const Icon(Icons.sunny), 
-                    label: const Text('Morado día'),
+                    label: Text('Morado día', style: TextStyle(fontFamily: font)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.purple.shade300,
                       minimumSize: const Size(150, 50)
@@ -144,7 +153,7 @@ class _ThemeConfigurationScreenState extends State<ThemeConfigurationScreen> {
                       theme.setthemeData(StyleSettings.darkPurpleTheme(context), 'darkPurpleTheme');
                     }, 
                     icon: const Icon(Icons.nightlight), 
-                    label: const Text('Morado noche'),
+                    label: Text('Morado noche', style: TextStyle(fontFamily: font)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.purple.shade900,
                       minimumSize: const Size(150, 50)
@@ -162,7 +171,7 @@ class _ThemeConfigurationScreenState extends State<ThemeConfigurationScreen> {
                       theme.setthemeData(StyleSettings.lightPinkTheme(context), 'lightPinkTheme');
                     }, 
                     icon: const Icon(Icons.sunny), 
-                    label: const Text('Rosa día'),
+                    label: Text('Rosa día', style: TextStyle(fontFamily: font)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.pink.shade300,
                       minimumSize: const Size(150, 50)
@@ -174,7 +183,7 @@ class _ThemeConfigurationScreenState extends State<ThemeConfigurationScreen> {
                       theme.setthemeData(StyleSettings.darkPinkTheme(context), 'darkPinkTheme');
                     }, 
                     icon: const Icon(Icons.nightlight), 
-                    label: const Text('Rosa noche'),
+                    label: Text('Rosa noche', style: TextStyle(fontFamily: font)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.pink.shade900,
                       minimumSize: const Size(150, 50)
@@ -192,7 +201,7 @@ class _ThemeConfigurationScreenState extends State<ThemeConfigurationScreen> {
                       theme.setthemeData(StyleSettings.lightOrangeTheme(context), 'lightOrangeTheme');
                     }, 
                     icon: const Icon(Icons.sunny), 
-                    label: const Text('Naranja día'),
+                    label: Text('Naranja día', style: TextStyle(fontFamily: font)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.orange.shade300,
                       minimumSize: const Size(150, 50)
@@ -204,7 +213,7 @@ class _ThemeConfigurationScreenState extends State<ThemeConfigurationScreen> {
                       theme.setthemeData(StyleSettings.darkOrangeTheme(context), 'darkOrangeTheme');
                     }, 
                     icon: const Icon(Icons.nightlight), 
-                    label: const Text('Naranja noche'),
+                    label: Text('Naranja noche', style: TextStyle(fontFamily: font)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.orange.shade900,
                       minimumSize: const Size(150, 50)
