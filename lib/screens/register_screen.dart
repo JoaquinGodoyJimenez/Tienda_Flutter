@@ -36,6 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           'email' : email,
           'name' : name,
           'provider' : 'Email',
+          'photoURL' : 'https://firebasestorage.googleapis.com/v0/b/mrjc-tienda.appspot.com/o/assets%2Fdefault_image.png?alt=media&token=32836d48-26bc-4a7b-9278-d7d020d47f3a', 
         }).then((value) => Navigator.popAndPushNamed(context, '/verification'));
       } on FirebaseAuthException catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text('Error: $e')));

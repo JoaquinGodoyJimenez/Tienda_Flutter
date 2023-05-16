@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "897825452999-tdupq2fj7hfepjbeksre6pn87rpkgtlf.apps.googleusercontent.com",
+          "client_id": "897825452999-ehg18e29c9ubumago4rgdl57im316ek6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mrjctienda.tienda",
+            "certificate_hash": "92baa69c0f7f31b6e0fce3ab3d38440f3f861d96"
+          }
+        },
+        {
+          "client_id": "897825452999-92i3e4la8adm42lmav5jambksg315p5p.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "897825452999-tdupq2fj7hfepjbeksre6pn87rpkgtlf.apps.googleusercontent.com",
+              "client_id": "897825452999-92i3e4la8adm42lmav5jambksg315p5p.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

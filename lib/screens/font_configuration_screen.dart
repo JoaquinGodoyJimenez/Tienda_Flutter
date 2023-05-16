@@ -50,8 +50,7 @@ class _FontConfigurationScreenState extends State<FontConfigurationScreen> {
               'Texto de ejemplo',
               style: TextStyle(
                 fontFamily: fontProvider.selectedFontFamily,
-                fontSize: 24,
-                
+                fontSize: 24,               
               ),
             ),
           ),

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tienda/provider/font_provider.dart';
+import 'package:tienda/provider/userphoto_provider.dart';
 import 'package:tienda/routes.dart';
 import 'package:tienda/screens/dashboard_screen.dart';
 import 'package:tienda/screens/welcome_screen.dart';
@@ -27,8 +28,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider(context)),
-        ChangeNotifierProvider(create: (_) => FontProvider(),),
-        ChangeNotifierProvider(create: (_) => FlagsProvider())
+        ChangeNotifierProvider(create: (_) => FontProvider()),
+        ChangeNotifierProvider(create: (_) => FlagsProvider()),
+        ChangeNotifierProvider(create: (_) => UserPhotoProvider()),
       ],
       child: MyHomePage(logged: logged),
     );

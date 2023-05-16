@@ -24,6 +24,10 @@ class UserFirebase {
     return _userCollection!.snapshots();
   } 
 
+  Stream<QuerySnapshot> getUserByEmail(String email) {
+    return _userCollection!.where('email', isEqualTo: email).snapshots();
+  }
+  
   Future<String?> getUserProvider(String email) async {
     try {
       final userDoc = await _userCollection!.where('email', isEqualTo: email).limit(1).get();

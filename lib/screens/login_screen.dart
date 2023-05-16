@@ -40,6 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (FirebaseAuth.instance.currentUser!.emailVerified) {
         final _prefs = await SharedPreferences.getInstance();
         await _prefs.setBool('logged', true);
+        Navigator.pop(context);
         Navigator.popAndPushNamed(context, '/dash');
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
       }else{
@@ -171,18 +172,21 @@ class _LoginScreenState extends State<LoginScreen> {
                             User? user = _auth.currentUser;
                             String email = user?.email.toString() ?? '';
                             String name = user?.displayName.toString() ?? '';
+                            String photo = user?.photoURL.toString() ?? '';
                             String? proveedor =  await _firebase.getUserProvider(email);
                             if (proveedor == null && email != '') {
                               _firebase.insUser({
                                 'email' : email,
                                 'name' : name,
                                 'provider' : 'Google',
+                                'photoURL' : photo,
                               });
                               proveedor =  await _firebase.getUserProvider(email);
                             }
                             if (proveedor == 'Google') {
                               final _prefs = await SharedPreferences.getInstance();
                               await _prefs.setBool('logged', true);
+                              Navigator.pop(context);
                               Navigator.popAndPushNamed(context, '/dash');
                               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
                             }else{
@@ -212,18 +216,21 @@ class _LoginScreenState extends State<LoginScreen> {
                             User? user = _auth.currentUser;
                             String email = user?.email.toString() ?? '';
                             String name = user?.displayName.toString() ?? '';
-                            String? proveedor =  await _firebase.getUserProvider(email); 
+                            String? proveedor =  await _firebase.getUserProvider(email);
+                            String photo = user?.photoURL.toString() ?? ''; 
                             if (proveedor == null && email != '') {
                               _firebase.insUser({
                                 'email' : email,
                                 'name' : name,
                                 'provider' : 'Facebook',
+                                'photoURL' : photo,
                               });
                               proveedor =  await _firebase.getUserProvider(email);
                             }     
                             if (proveedor == 'Facebook') {
                               final _prefs = await SharedPreferences.getInstance();
                               await _prefs.setBool('logged', true);
+                              Navigator.pop(context);
                               Navigator.popAndPushNamed(context, '/dash');
                               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
                             }else{
@@ -255,17 +262,20 @@ class _LoginScreenState extends State<LoginScreen> {
                             String email = user?.email.toString() ?? '';
                             String name = user?.displayName.toString() ?? '';
                             String? proveedor =  await _firebase.getUserProvider(email); 
+                            String photo = user?.photoURL.toString() ?? '';
                             if (proveedor == null && email != '') {
                               _firebase.insUser({
                                 'email' : email,
                                 'name' : name,
                                 'provider' : 'Github',
+                                'photoURL' : photo,
                               });
                               proveedor =  await _firebase.getUserProvider(email);
                             } 
                             if (proveedor == 'Github') {
                               final _prefs = await SharedPreferences.getInstance();
                               await _prefs.setBool('logged', true);
+                              Navigator.pop(context);
                               Navigator.popAndPushNamed(context, '/dash');
                               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
                             }else{
