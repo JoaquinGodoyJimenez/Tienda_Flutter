@@ -50,6 +50,8 @@ dependencies:
   firebase_storage: ^11.2.0
   image_picker: ^0.8.7+5
   path_provider: ^2.0.15
+  firebase_messaging: ^14.6.1
+  flutter_local_notifications: ^14.0.0+2
 
 dev_dependencies:
   flutter_test:
