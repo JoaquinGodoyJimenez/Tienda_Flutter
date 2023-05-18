@@ -52,6 +52,12 @@ dependencies:
   path_provider: ^2.0.15
   firebase_messaging: ^14.6.1
   flutter_local_notifications: ^14.0.0+2
+  flutter_native_splash: ^2.2.0
+
+flutter_native_splash:
+  #color: "#05ebc4"
+  image: "assets/images/shopping_cart.png"
+  background_image: "assets/images/shop_background.jpg"
 
 dev_dependencies:
   flutter_test:

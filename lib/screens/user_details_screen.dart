@@ -147,6 +147,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                           fontFamily: font,
                         ),
                       ),
+                      const SizedBox(height: 5),
                       const SizedBox(height: 15),
                     ],
                   ),

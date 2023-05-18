@@ -46,7 +46,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 15,),
-                Center(child: Image.asset('assets/images/logo_itc.png', width: 120,)),
+                Center(child: Image.asset('assets/images/shopping_cart.png', width: 100,)),
                 const SizedBox(height: 25,),
                 Text(
                   "Se ha enviado un correo de verificación.", 

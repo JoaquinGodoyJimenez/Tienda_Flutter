@@ -52,7 +52,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       appBar: AppBar(
         title: const Text('Registrar usuario.'),
         centerTitle: true,
-        backgroundColor: Colors.green.shade800,
       ),
       body: _isLoading
       ? 
@@ -69,7 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(height: 15,),
-                  Center(child: Image.asset('assets/images/logo_itc.png', width: 120,)),
+                  Center(child: Image.asset('assets/images/shopping_cart.png', width: 100,)),
                   const SizedBox(height: 25,),
                   Text(
                     "Registrarse.", 
@@ -103,7 +102,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       decoration: const InputDecoration(
                         hintText: 'Nombre completo',
-                        focusColor: Colors.green,                
                       ),
                     ),
                   ),
@@ -123,7 +121,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       decoration: const InputDecoration(
                         hintText: 'Correo electrónico',
-                        focusColor: Colors.green,                
                       ),
                     ),
                   ),
@@ -141,7 +138,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       decoration: const InputDecoration(
                         hintText: 'Contraseña',
-                        focusColor: Colors.green,                
                       ),
                     ),
                   ),
@@ -149,7 +145,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ElevatedButton(
                     onPressed: () => handleSubmit(), 
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green.shade800,
                       minimumSize: const Size(200, 50),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),                  
                     ),

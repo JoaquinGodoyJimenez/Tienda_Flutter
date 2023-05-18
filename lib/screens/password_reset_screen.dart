@@ -29,7 +29,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Center(child: Image.asset('assets/images/logo_itc.png', width: 120,)),
+                  Center(child: Image.asset('assets/images/shopping_cart.png', width: 100,)),
                   const SizedBox(height: 25,),
                   Text(
                     "Cambiar contraseña.", 

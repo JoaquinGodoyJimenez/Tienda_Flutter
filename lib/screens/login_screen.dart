@@ -63,7 +63,6 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         title: const Text('Iniciar Sesión'),
         centerTitle: true,
-        backgroundColor: Colors.green.shade800,
       ),
       body: isLoading
       ? 
@@ -80,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(height: 15,),
-                  Center(child: Image.asset('assets/images/logo_itc.png', width: 120,)),
+                  Center(child: Image.asset('assets/images/shopping_cart.png', width: 100,)),
                   const SizedBox(height: 25,),
                   Text(
                     "Iniciar sesión.", 
@@ -116,8 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         return null;
                       },
                       decoration: const InputDecoration(
-                        hintText: 'Correo electrónico',
-                        focusColor: Colors.green,                
+                        hintText: 'Correo electrónico',           
                       ),
                     ),
                   ),
@@ -134,8 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         return null;
                       },
                       decoration: const InputDecoration(
-                        hintText: 'Contraseña',
-                        focusColor: Colors.green,                
+                        hintText: 'Contraseña',            
                       ),
                     ),
                   ),
@@ -148,7 +145,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       handleSubmit();
                     } , 
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green.shade800,
                       minimumSize: const Size(200, 50),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),                  
                     ),
@@ -301,7 +297,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       'Olvidé la contraseña', 
                       style: GoogleFonts.montserrat(
                         textStyle: const TextStyle(
-                          fontSize: 12,
+                          fontSize: 18,
                           decoration: TextDecoration.underline
                         )
                       ),

@@ -18,8 +18,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 15,),
-                Center(child: Image.asset('assets/images/logo_itc.png', width: 120,)),
+                const SizedBox(height: 55,),
+                Center(child: Image.asset('assets/images/shopping_cart.png', width: 100,)),
                 const SizedBox(height: 25,),
                 Text(
                   "Bienvenido.", 
@@ -46,7 +46,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     Navigator.pushNamed(context, '/login');
                   }, 
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green.shade800,
                     minimumSize: const Size(200, 50),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),                  
                   ),
@@ -58,7 +57,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     Navigator.pushNamed(context, '/register');
                   }, 
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue.shade800,
+                    backgroundColor: Colors.blue.shade700,
                     minimumSize: const Size(200, 50),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),                  
                   ),
