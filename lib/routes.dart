@@ -3,9 +3,11 @@ import 'package:tienda/screens/dashboard_screen.dart';
 import 'package:tienda/screens/email_verification_screen.dart';
 import 'package:tienda/screens/font_configuration_screen.dart';
 import 'package:tienda/screens/login_screen.dart';
+import 'package:tienda/screens/onboard_screen.dart';
 import 'package:tienda/screens/password_reset_screen.dart';
 import 'package:tienda/screens/register_screen.dart';
 import 'package:tienda/screens/theme_configuration_screen.dart';
+import 'package:tienda/screens/theme_subscription_screen.dart';
 import 'package:tienda/screens/welcome_screen.dart';
 
 Map<String, WidgetBuilder> getApplicationRoutes() {
@@ -18,5 +20,7 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     '/welcome': (BuildContext context) => const WelcomeScreen(),
     '/theme': (BuildContext context) => const ThemeConfigurationScreen(), 
     '/font': (BuildContext context) => const FontConfigurationScreen(), 
+    '/onboard': (BuildContext context) => const OnboardScreen(), 
+    '/suscription': (BuildContext context) => const ThemeSuscriptionScreen(), 
   };
 }

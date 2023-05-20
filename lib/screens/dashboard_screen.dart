@@ -64,9 +64,30 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     )
                   ),
                   ListTile(
+                    onTap: () async {
+                      final _prefs = await SharedPreferences.getInstance();
+                      await _prefs.setBool('seenBoard', true);
+                      Navigator.pushNamed(context, '/onboard');
+                    },
+                    title: Text(
+                      'Presentación',
+                      style: TextStyle(
+                        fontFamily: font
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Detalles sobre la app.',
+                      style: TextStyle(
+                        fontFamily: font
+                      ),
+                    ),
+                    leading: const Icon(Icons.search),
+                    trailing: const Icon(Icons.chevron_right),
+                  ),
+                  ListTile(
                     onTap: () => Navigator.pushNamed(context, '/theme'),
                     title: Text(
-                      'Cambiar tema',
+                      'Configuración de tema',
                       style: TextStyle(
                         fontFamily: font
                       ),
@@ -83,13 +104,30 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ListTile(
                     onTap: () => Navigator.pushNamed(context, '/font'),
                     title: Text(
-                      'Cambiar tipo de letra',
+                      'Configuración de tipo de letra',
                       style: TextStyle(
                         fontFamily: font
                       ),
                     ),
                     subtitle: Text(
                       'Cambie el tipo de letra.',
+                      style: TextStyle(
+                        fontFamily: font
+                      ),
+                    ),
+                    leading: const Icon(Icons.settings),
+                    trailing: const Icon(Icons.chevron_right),
+                  ),
+                  ListTile(
+                    onTap: () => Navigator.pushNamed(context, '/suscription'),
+                    title: Text(
+                      'Configuración de suscripciones',
+                      style: TextStyle(
+                        fontFamily: font
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Administre sus notificaciones.',
                       style: TextStyle(
                         fontFamily: font
                       ),
