@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MRJC-Tienda</string>
-    <string name="facebook_app_id">979806419701387</string>
-    <string name="fb_login_protocol_scheme">fb979806419701387</string>
-    <string name="facebook_client_token">5c6aaebfe18189caf886631b4944bf54</string>
+    <string name="facebook_app_id">789046442741497</string>
+    <string name="fb_login_protocol_scheme">fb789046442741497</string>
+    <string name="facebook_client_token">25e3cfc56abd78e28f1e5d86cda9dc16</string>
 </resources>
