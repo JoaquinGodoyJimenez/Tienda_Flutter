@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,8 +42,14 @@ class _LoginScreenState extends State<LoginScreen> {
       if (FirebaseAuth.instance.currentUser!.emailVerified) {
         final _prefs = await SharedPreferences.getInstance();
         await _prefs.setBool('logged', true);
+        final seenboard = _prefs.getBool('seenBoard') ?? false;
         Navigator.pop(context);
-        Navigator.popAndPushNamed(context, '/dash');
+        if (seenboard) {
+          Navigator.popAndPushNamed(context, '/dash');
+        }else{
+          await _prefs.setBool('seenBoard', true);
+          Navigator.popAndPushNamed(context, '/onboard');
+        }
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
       }else{
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('No has verificado tu correo')));
@@ -181,9 +189,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             }
                             if (proveedor == 'Google') {
                               final _prefs = await SharedPreferences.getInstance();
-                              await _prefs.setBool('logged', true);
+                              await _prefs.setBool('logged', true);                              
                               Navigator.pop(context);
-                              Navigator.popAndPushNamed(context, '/dash');
+                              final seenboard = _prefs.getBool('seenBoard') ?? false;
+                              if (seenboard) {
+                                Navigator.popAndPushNamed(context, '/dash');
+                              }else{
+                                await _prefs.setBool('seenBoard', true);
+                                Navigator.popAndPushNamed(context, '/onboard');
+                              }
                               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
                             }else{
                               await GoogleSignIn().signOut();
@@ -226,8 +240,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (proveedor == 'Facebook') {
                               final _prefs = await SharedPreferences.getInstance();
                               await _prefs.setBool('logged', true);
+                              final seenboard = _prefs.getBool('seenBoard') ?? false;
                               Navigator.pop(context);
-                              Navigator.popAndPushNamed(context, '/dash');
+                              if (seenboard) {
+                                Navigator.popAndPushNamed(context, '/dash');
+                              }else{
+                                await _prefs.setBool('seenBoard', true);
+                                Navigator.popAndPushNamed(context, '/onboard');
+                              }
                               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
                             }else{
                               await FirebaseGithubAuth().signOut();
@@ -271,8 +291,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (proveedor == 'Github') {
                               final _prefs = await SharedPreferences.getInstance();
                               await _prefs.setBool('logged', true);
+                              final seenboard = _prefs.getBool('seenBoard') ?? false;
                               Navigator.pop(context);
-                              Navigator.popAndPushNamed(context, '/dash');
+                              if (seenboard) {
+                                Navigator.popAndPushNamed(context, '/dash');
+                              }else{
+                                await _prefs.setBool('seenBoard', true);
+                                Navigator.popAndPushNamed(context, '/onboard');
+                              }
                               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ha iniciado sesión de manera correcta')));
                             }else{
                               await FacebookAuth.instance.logOut();

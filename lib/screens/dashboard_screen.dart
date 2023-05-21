@@ -67,10 +67,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     onTap: () async {
                       final _prefs = await SharedPreferences.getInstance();
                       await _prefs.setBool('seenBoard', true);
-                      Navigator.pushNamed(context, '/onboard');
+                      Navigator.pop(context);
+                      Navigator.popAndPushNamed(context, '/onboard');
                     },
                     title: Text(
-                      'Presentación',
+                      'Presentación de la app',
                       style: TextStyle(
                         fontFamily: font
                       ),
@@ -81,7 +82,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         fontFamily: font
                       ),
                     ),
-                    leading: const Icon(Icons.search),
+                    leading: const Icon(Icons.app_shortcut),
                     trailing: const Icon(Icons.chevron_right),
                   ),
                   ListTile(
@@ -143,6 +144,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       await auth.signOut();
                       final _prefs = await SharedPreferences.getInstance();
                       await _prefs.setBool('logged', false);
+                      await _prefs.setBool('seenBoard', false);
                       Navigator.pop(context);
                       Navigator.popAndPushNamed(context, '/welcome');
                     },
