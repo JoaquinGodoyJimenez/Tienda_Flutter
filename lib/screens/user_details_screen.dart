@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' as path;
+import 'package:tienda/api/categoria_api.dart';
 import 'package:tienda/provider/userphoto_provider.dart';
 import 'dart:io';
 
@@ -157,20 +158,22 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   ElevatedButton.icon(
-                                    onPressed: () => Navigator.pop(context), 
+                                    onPressed: () => Navigator.pushNamed(context, '/proveedores'), 
                                     icon: Icon(Icons.person), 
                                     label: Text("Proveedores"),
                                     style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.green,
                                       minimumSize: const Size(190, 140),
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),                  
                                     ),
                                   ),
                                   const SizedBox(width: 20),
                                   ElevatedButton.icon(
-                                    onPressed: () => Navigator.pop(context), 
+                                    onPressed: () => Navigator.pushNamed(context, '/marcas'), 
                                     icon: Icon(Icons.shopping_bag), 
                                     label: Text("Marcas"),
                                     style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.blue,
                                       minimumSize: const Size(190, 140),
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),                  
                                     ),
@@ -182,20 +185,22 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   ElevatedButton.icon(
-                                    onPressed: () => Navigator.pop(context), 
+                                    onPressed: () {}, 
                                     icon: Icon(Icons.card_giftcard), 
                                     label: Text("Productos"),
                                     style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.orange,
                                       minimumSize: const Size(190, 140),
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),                  
                                     ),
                                   ),
                                   const SizedBox(width: 20),
                                   ElevatedButton.icon(
-                                    onPressed: () => Navigator.pop(context), 
+                                    onPressed: () => Navigator.pushNamed(context, '/ventas'), 
                                     icon: Icon(Icons.credit_card), 
                                     label: Text("Ventas"),
                                     style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.red,
                                       minimumSize: const Size(190, 140),
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),                  
                                     ),
@@ -207,42 +212,29 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   ElevatedButton.icon(
-                                    onPressed: () => Navigator.pop(context), 
+                                    onPressed: () => Navigator.pushNamed(context, '/categories'), 
                                     icon: Icon(Icons.category), 
                                     label: Text("Categorias"),
                                     style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.purple,
                                       minimumSize: const Size(190, 140),
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),                  
                                     ),
                                   ),
                                   const SizedBox(width: 20),
                                   ElevatedButton.icon(
-                                    onPressed: () => Navigator.pop(context), 
+                                    onPressed: () => Navigator.pushNamed(context, '/empleados'), 
                                     icon: Icon(Icons.work), 
                                     label: Text("Empleados"),
                                     style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.black26,
                                       minimumSize: const Size(190, 140),
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),                  
                                     ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 20),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const SizedBox(width: 20),
-                                  ElevatedButton.icon(
-                                    onPressed: () => Navigator.pop(context), 
-                                    icon: Icon(Icons.stacked_bar_chart), 
-                                    label: Text("Estadísticas"),
-                                    style: ElevatedButton.styleFrom(
-                                      minimumSize: const Size(190, 140),
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),                  
-                                    ),
-                                  ),
-                                ],
-                              ),  
+                              const SizedBox(height: 20),  
                             ],
                           ),
                         ),
