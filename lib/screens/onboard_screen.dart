@@ -109,8 +109,8 @@ class _OnboardScreenState extends State<OnboardScreen> {
             buildPage(
               color: Colors.red.shade400, 
               urlImage: 'assets/images/page3.jpg', 
-              title: 'Estadísticas de la tienda', 
-              subtitle: 'La aplicación te permite observar múltiples\n estadísticas para poder facilitar la\n administración de la tienda.',
+              title: 'Personaliza la aplicación', 
+              subtitle: 'La aplicación te permite personalizar\n el color y el tipo de letra.',
               fontFamily: font
             ),
           ],

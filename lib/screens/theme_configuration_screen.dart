@@ -51,7 +51,7 @@ class _ThemeConfigurationScreenState extends State<ThemeConfigurationScreen> {
                       theme.setthemeData(StyleSettings.lightTheme(context), 'lightTheme');
                     }, 
                     icon: const Icon(Icons.sunny), 
-                    label: Text('Tema claro', style: TextStyle(fontFamily: font)),
+                    label: Text('Verde día', style: TextStyle(fontFamily: font)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green.shade400,
                       minimumSize: const Size(150, 50)
@@ -63,7 +63,7 @@ class _ThemeConfigurationScreenState extends State<ThemeConfigurationScreen> {
                       theme.setthemeData(StyleSettings.darkTheme(context), 'darkTheme');
                     }, 
                     icon: const Icon(Icons.nightlight), 
-                    label: Text('Tema oscuro', style: TextStyle(fontFamily: font)),
+                    label: Text('Verde noche', style: TextStyle(fontFamily: font)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green.shade900,
                       minimumSize: const Size(150, 50)

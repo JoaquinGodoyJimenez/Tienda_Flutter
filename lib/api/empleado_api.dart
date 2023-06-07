@@ -18,4 +18,18 @@ class EmpleadoApi {
     }
     return null;
   }
+
+  Future<void> deleteEmpleado(int id) async {
+    try {
+      final url = 'https://mrjc-tienda.000webhostapp.com/ws/empleado_ws.php?id=$id';
+      final response = await dio.delete(url);
+      if (response.statusCode == 200) {
+        print('Empleado eliminado con éxito');
+      } else {
+        print('Error al eliminar el empleado. Código: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Excepción al eliminar el empleado: $e');
+    }
+  }
 }

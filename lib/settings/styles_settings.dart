@@ -26,7 +26,7 @@ class StyleSettings {
       ),  
     );
   }
-
+  
   static ThemeData lightBlueTheme(BuildContext context) {
     final theme = ThemeData.light();
     return theme.copyWith(

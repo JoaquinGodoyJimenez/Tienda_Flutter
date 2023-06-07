@@ -84,7 +84,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                     leading: const Icon(Icons.app_shortcut),
                     trailing: const Icon(Icons.chevron_right),
-                  ),
+                  ),              
                   ListTile(
                     onTap: () => Navigator.pushNamed(context, '/theme'),
                     title: Text(

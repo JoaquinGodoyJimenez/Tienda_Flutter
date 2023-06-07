@@ -19,4 +19,18 @@ class ProveedorApi {
     }
     return null;
   }
+
+  Future<void> deleteProveedor(int id) async {
+    try {
+      final url = 'https://mrjc-tienda.000webhostapp.com/ws/proveedor_ws.php?id=$id';
+      final response = await dio.delete(url);
+      if (response.statusCode == 200) {
+        print('Proveedor eliminado con éxito');
+      } else {
+        print('Error al eliminar el proveedor. Código: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Excepción al eliminar el proveedor: $e');
+    }
+  }
 }

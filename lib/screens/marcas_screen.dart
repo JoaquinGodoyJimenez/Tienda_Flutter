@@ -78,11 +78,67 @@ class _MarcasScreenState extends State<MarcasScreen> {
                         DataCell(Row(
                           children: [
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Confirmar editar'),
+                                      content:
+                                          Text('¿Desea editar la marca?'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();                                            
+                                          },
+                                          child: const Text('Cancelar'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            print('Se ha editao');
+                                            Navigator.of(context).pop();
+                                            Navigator.of(context).pop();
+                                            Navigator.pushNamed(context, '/marcas');
+                                          },
+                                          child: const Text('Aceptar'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
                               icon: const Icon(Icons.edit, color: Colors.blue),
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Confirmar borrado'),
+                                      content:
+                                          Text('¿Desea borrar la marca?'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Text('Cancelar'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            marcaApi?.deleteMarca(int.parse(marca.idMarca));
+                                            Navigator.of(context).pop();
+                                            Navigator.of(context).pop();
+                                            Navigator.pushNamed(context, '/marcas');
+                                          },
+                                          child: const Text('Aceptar'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
                               icon: const Icon(Icons.delete, color: Colors.red),
                             ),
                           ],
@@ -96,7 +152,7 @@ class _MarcasScreenState extends State<MarcasScreen> {
           } else {
             return Center(
               child: Text(
-                'No se encontraron categorías.',
+                'No se encontraron marcas.',
                 style: TextStyle(fontFamily: font),
               ),
             );

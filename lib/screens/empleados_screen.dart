@@ -78,11 +78,67 @@ class _EmpleadosScreenState extends State<EmpleadosScreen> {
                         DataCell(Row(
                           children: [
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Confirmar editar'),
+                                      content:
+                                          Text('¿Desea editar al empleado?'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                            Navigator.of(context).pop();
+                                            Navigator.pushNamed(context, '/empleados');
+                                          },
+                                          child: const Text('Cancelar'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            print('Se ha editao');
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Text('Aceptar'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
                               icon: const Icon(Icons.edit, color: Colors.blue),
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Confirmar borrado'),
+                                      content:
+                                          Text('¿Desea borrar al empleado?'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Text('Cancelar'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            empleadoApi?.deleteEmpleado(int.parse(empleado.idEmpleado));
+                                            Navigator.of(context).pop();
+                                            Navigator.of(context).pop();
+                                            Navigator.pushNamed(context, '/empleados');
+                                          },
+                                          child: const Text('Aceptar'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
                               icon: const Icon(Icons.delete, color: Colors.red),
                             ),
                           ],

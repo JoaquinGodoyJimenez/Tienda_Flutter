@@ -57,9 +57,9 @@ dependencies:
   dio: ^5.1.2
 
 flutter_native_splash:
-  #color: "#05ebc4"
+  color: "#ffffff"
   image: "assets/images/shopping_cart.png"
-  background_image: "assets/images/shop_background.jpg"
+  #background_image: "assets/images/shop_background.jpg"
 
 dev_dependencies:
   flutter_test:

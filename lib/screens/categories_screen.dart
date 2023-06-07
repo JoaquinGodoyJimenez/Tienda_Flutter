@@ -60,11 +60,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     snapshot.data!.length,
                     (int index) {
                       final categoria = snapshot.data![index];
-                          
+
                       return DataRow(cells: [
                         DataCell(Text(
                           categoria.idCategoria,
-                          style: TextStyle(fontFamily: font, color: Colors.blue.shade500),
+                          style: TextStyle(
+                              fontFamily: font, color: Colors.blue.shade500),
                         )),
                         DataCell(Text(
                           categoria.categoria,
@@ -73,11 +74,67 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         DataCell(Row(
                           children: [
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Confirmar editar'),
+                                      content:
+                                          Text('¿Desea editar la categoria?'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();                                            
+                                          },
+                                          child: const Text('Cancelar'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            print('Se ha editao');
+                                            Navigator.of(context).pop();
+                                            Navigator.of(context).pop();
+                                            Navigator.pushNamed(context, '/categories');
+                                          },
+                                          child: const Text('Aceptar'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
                               icon: const Icon(Icons.edit, color: Colors.blue),
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Confirmar borrado'),
+                                      content:
+                                          Text('¿Desea borrar la categoria?'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Text('Cancelar'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            categoriaApi?.deleteCategoria(int.parse(categoria.idCategoria));
+                                            Navigator.of(context).pop();
+                                            Navigator.of(context).pop();
+                                            Navigator.pushNamed(context, '/categories');
+                                          },
+                                          child: const Text('Aceptar'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
                               icon: const Icon(Icons.delete, color: Colors.red),
                             ),
                           ],

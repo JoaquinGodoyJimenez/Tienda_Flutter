@@ -78,6 +78,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                                           final imageProvider = Provider.of<UserPhotoProvider>(context, listen: false);
                                           imageProvider.imageUrl = imageUrl;
                                           userFirebase.updUser({'photoURL' : imageUrl}, snapshot.data.docs[index].id);                                       
+                                          Navigator.pop(context);
                                         } catch (error) {
                                           print(error);
                                         }
@@ -105,6 +106,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                                           final imageProvider = Provider.of<UserPhotoProvider>(context, listen: false);
                                           imageProvider.imageUrl = imageUrl;
                                           userFirebase.updUser({'photoURL' : imageUrl}, snapshot.data.docs[index].id);                                       
+                                          Navigator.pop(context);
                                         } catch (error) {
                                           print(error);
                                         }
@@ -150,6 +152,633 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                           ),
                         ),
                         const SizedBox(height: 40),
+                        //Aqui va el nuevo diseño del dash
+                        const Divider(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              'Proveedores', 
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontFamily: font, 
+                                fontSize: 25, 
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
+                            TextButton.icon(
+                              onPressed: () => Navigator.pushNamed(context, '/proveedores'), 
+                              icon: const Icon(Icons.add), 
+                              label: Text('Detalles', style: TextStyle(fontFamily: font),)
+                            )                            
+                          ],
+                        ),
+                        Container(
+                          height: 300,
+                          width: 350,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: Colors.grey.shade100,
+                              width: 2
+                            ),
+                            color:Colors.white
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [                                  
+                                  Row(
+                                    children: [
+                                      Container(width: 5, height: 60, decoration: const BoxDecoration(color: Colors.blue)),
+                                      const SizedBox(width: 10,),
+                                      Column(
+                                        children: [
+                                          Text('Lunes', style: TextStyle(fontFamily: font, color: Colors.black54, fontWeight: FontWeight.bold),),
+                                          const SizedBox(height: 5,),
+                                          Text('Bonafont', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                          const SizedBox(height: 5,),
+                                          Text('Pepsi', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                          const SizedBox(height: 5,),
+                                          Text('Marlboro', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Container(width: 5, height: 60, decoration: const BoxDecoration(color: Colors.red)),
+                                      const SizedBox(width: 10,),
+                                      Column(
+                                        children: [
+                                          Text('Martes', style: TextStyle(fontFamily: font, color: Colors.black54, fontWeight: FontWeight.bold),),
+                                          const SizedBox(height: 5,),
+                                          Text('Coca cola', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                          const SizedBox(height: 5,),
+                                          Text('Abarrotes', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [                                  
+                                  Row(
+                                    children: [
+                                      Container(width: 5, height: 60, decoration: const BoxDecoration(color: Colors.yellow)),
+                                      const SizedBox(width: 10,),
+                                      Column(
+                                        children: [
+                                          Text('Miércoles', style: TextStyle(fontFamily: font, color: Colors.black54, fontWeight: FontWeight.bold),),
+                                          const SizedBox(height: 5,),
+                                          Text('Ninguno', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Container(width: 5, height: 60, decoration: const BoxDecoration(color: Colors.green)),
+                                      const SizedBox(width: 10,),
+                                      Column(
+                                        children: [
+                                          Text('Jueves', style: TextStyle(fontFamily: font, color: Colors.black54, fontWeight: FontWeight.bold),),
+                                          const SizedBox(height: 5,),
+                                          Text('Coca cola', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                          const SizedBox(height: 5,),
+                                          Text('Aga', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [                                  
+                                  Row(
+                                    children: [
+                                      Container(width: 5, height: 60, decoration: const BoxDecoration(color: Colors.orange)),
+                                      const SizedBox(width: 10,),
+                                      Column(
+                                        children: [
+                                          Text('Viernes', style: TextStyle(fontFamily: font, color: Colors.black54, fontWeight: FontWeight.bold),),
+                                          const SizedBox(height: 5,),
+                                          Text('Bonafont', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Container(width: 5, height: 60, decoration: const BoxDecoration(color: Colors.purple)),
+                                      const SizedBox(width: 10,),
+                                      Column(
+                                        children: [
+                                          Text('Sábado', style: TextStyle(fontFamily: font, color: Colors.black54, fontWeight: FontWeight.bold),),
+                                          const SizedBox(height: 5,),
+                                          Text('Peñafiel', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),                               
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 40),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              'Marcas', 
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontFamily: font, 
+                                fontSize: 25, 
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
+                            TextButton.icon(
+                              onPressed: () => Navigator.pushNamed(context, '/marcas'), 
+                              icon: const Icon(Icons.add), 
+                              label: Text('Detalles', style: TextStyle(fontFamily: font),)
+                            )                            
+                          ],
+                        ),
+                        Container(
+                          height: 480,
+                          width: 420,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          height: 150,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: Colors.red,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text('Coca cola', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+                                              const SizedBox(height: 10,),
+                                              Text('Proveedor: Coca cola', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold,),),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20,),
+                                        Container(
+                                          height: 150,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: Colors.green,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text('Sprite', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+                                              const SizedBox(height: 10,),
+                                              Text('Proveedor: Coca cola', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold,),),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20,),
+                                        Container(
+                                          height: 150,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: Colors.black45,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text('Coca cola Zero', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+                                              const SizedBox(height: 10,),
+                                              Text('Proveedor: Coca cola', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold,),),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20,),
+                                        Container(
+                                          height: 150,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: Colors.orange,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text('Fanta', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+                                              const SizedBox(height: 10,),
+                                              Text('Proveedor: Coca cola', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold,),),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20,),
+                                        Container(
+                                          height: 150,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: Colors.brown,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text('Sidral mundet', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+                                              const SizedBox(height: 10,),
+                                              Text('Proveedor: Coca cola', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold,),),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          height: 150,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: Colors.blue.shade900,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text('Pepsi', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+                                              const SizedBox(height: 10,),
+                                              Text('Proveedor: Pepsi', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold,),),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20,),
+                                        Container(
+                                          height: 150,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: Colors.orange,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text('Mirinda', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+                                              const SizedBox(height: 10,),
+                                              Text('Proveedor: Pepsi', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold,),),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20,),
+                                        Container(
+                                          height: 150,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: Colors.red,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text('manzanita sol', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+                                              const SizedBox(height: 10,),
+                                              Text('Proveedor: Pepsi', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold,),),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20,),
+                                        Container(
+                                          height: 150,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: Colors.green,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text('7up', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+                                              const SizedBox(height: 10,),
+                                              Text('Proveedor: Pepsi', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold,),),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20,),
+                                        Container(
+                                          height: 150,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: Colors.blueAccent,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text('Epura', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+                                              const SizedBox(height: 10,),
+                                              Text('Proveedor: Pepsi', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold,),),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          height: 150,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: Colors.yellow.shade700,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text('Sabritas', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+                                              const SizedBox(height: 10,),
+                                              Text('Proveedor: Sabritas', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold,),),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20,),
+                                        Container(
+                                          height: 150,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: Colors.red,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text('Cheetos', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+                                              const SizedBox(height: 10,),
+                                              Text('Proveedor: Sabritas', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold,),),
+                                            ],
+                                          ),
+                                        ),                                        
+                                        const SizedBox(width: 20,),
+                                        Container(
+                                          height: 150,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: Colors.green,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text('Tostitos', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+                                              const SizedBox(height: 10,),
+                                              Text('Proveedor: Sabritas', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold,),),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20,),
+                                        Container(
+                                          height: 150,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: Colors.red,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text('Doritos', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+                                              const SizedBox(height: 10,),
+                                              Text('Proveedor: Sabritas', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold,),),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20,),
+                                        Container(
+                                          height: 150,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: Colors.yellow.shade700,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text('Fritos', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+                                              const SizedBox(height: 10,),
+                                              Text('Proveedor: Sabritas', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold,),),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20,),
+                                        Container(
+                                          height: 150,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: Colors.pink,
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text('Churrumais', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),),
+                                              const SizedBox(height: 10,),
+                                              Text('Proveedor: Sabritas', style: TextStyle(fontFamily: font, color: Colors.white, fontWeight: FontWeight.bold,),),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 40),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              'Entrega', 
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontFamily: font, 
+                                fontSize: 25, 
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
+                            TextButton.icon(
+                              onPressed: () {}, 
+                              icon: const Icon(Icons.add), 
+                              label: Text('Detalles', style: TextStyle(fontFamily: font),)
+                            )                            
+                          ],
+                        ),
+                        Container(
+                          height: 400,
+                          width: 350,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: Colors.grey.shade100,
+                              width: 2
+                            ),
+                            color:Colors.white
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [                                  
+                                  Row(
+                                    children: [
+                                      Container(width: 5, height: 60, decoration: const BoxDecoration(color: Colors.blue)),
+                                      const SizedBox(width: 10,),
+                                      Column(
+                                        children: [
+                                          Text('Lunes', style: TextStyle(fontFamily: font, color: Colors.black54, fontWeight: FontWeight.bold),),
+                                          const SizedBox(height: 5,),
+                                          Text('Peñafiel', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Container(width: 5, height: 110, decoration: const BoxDecoration(color: Colors.red)),
+                                      const SizedBox(width: 10,),
+                                      Column(
+                                        children: [
+                                          Text('Martes', style: TextStyle(fontFamily: font, color: Colors.black54, fontWeight: FontWeight.bold),),
+                                          const SizedBox(height: 5,),
+                                          Text('Bonafont', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                          const SizedBox(height: 5,),
+                                          Text('Pepsi', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                          const SizedBox(height: 5,),
+                                          Text('Aga', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                          const SizedBox(height: 5,),
+                                          Text('Sabritas', style: TextStyle(fontFamily: font, color: Colors.black54),),                                       
+                                          const SizedBox(height: 5,),
+                                          Text('Capistrano', style: TextStyle(fontFamily: font, color: Colors.black54),), 
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [                                  
+                                  Row(
+                                    children: [
+                                      Container(width: 5, height: 100, decoration: const BoxDecoration(color: Colors.yellow)),
+                                      const SizedBox(width: 10,),
+                                      Column(
+                                        children: [
+                                          Text('Miércoles', style: TextStyle(fontFamily: font, color: Colors.black54, fontWeight: FontWeight.bold),),
+                                          const SizedBox(height: 5,),
+                                          Text('Coca cola', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                          const SizedBox(height: 5,),
+                                          Text('Boing', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                          const SizedBox(height: 5,),
+                                          Text('Abarrotes', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                          const SizedBox(height: 5,),
+                                          Text('Luzma', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Container(width: 5, height: 60, decoration: const BoxDecoration(color: Colors.green)),
+                                      const SizedBox(width: 10,),
+                                      Column(
+                                        children: [
+                                          Text('Jueves', style: TextStyle(fontFamily: font, color: Colors.black54, fontWeight: FontWeight.bold),),
+                                          const SizedBox(height: 5,),
+                                          Text('Bimbo', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [                                  
+                                  Row(
+                                    children: [
+                                      Container(width: 5, height: 70, decoration: const BoxDecoration(color: Colors.orange)),
+                                      const SizedBox(width: 10,),
+                                      Column(
+                                        children: [
+                                          Text('Viernes', style: TextStyle(fontFamily: font, color: Colors.black54, fontWeight: FontWeight.bold),),
+                                          const SizedBox(height: 5,),
+                                          Text('Coca cola', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                          const SizedBox(height: 5,),
+                                          Text('Aga', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                          const SizedBox(height: 5,),
+                                          Text('Barcel', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Container(width: 5, height: 60, decoration: const BoxDecoration(color: Colors.purple)),
+                                      const SizedBox(width: 10,),
+                                      Column(
+                                        children: [
+                                          Text('Sábado', style: TextStyle(fontFamily: font, color: Colors.black54, fontWeight: FontWeight.bold),),
+                                          const SizedBox(height: 5,),
+                                          Text('Bonafont', style: TextStyle(fontFamily: font, color: Colors.black54),),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),                               
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 40),
+                        const Divider(),
+                        const SizedBox(height: 40),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
@@ -159,8 +788,8 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                                 children: [
                                   ElevatedButton.icon(
                                     onPressed: () => Navigator.pushNamed(context, '/proveedores'), 
-                                    icon: Icon(Icons.person), 
-                                    label: Text("Proveedores"),
+                                    icon: const Icon(Icons.person), 
+                                    label: const Text("Proveedores"),
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.green,
                                       minimumSize: const Size(190, 140),
@@ -170,8 +799,8 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                                   const SizedBox(width: 20),
                                   ElevatedButton.icon(
                                     onPressed: () => Navigator.pushNamed(context, '/marcas'), 
-                                    icon: Icon(Icons.shopping_bag), 
-                                    label: Text("Marcas"),
+                                    icon: const Icon(Icons.shopping_bag), 
+                                    label: const Text("Marcas"),
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.blue,
                                       minimumSize: const Size(190, 140),
@@ -186,8 +815,8 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                                 children: [
                                   ElevatedButton.icon(
                                     onPressed: () {}, 
-                                    icon: Icon(Icons.card_giftcard), 
-                                    label: Text("Productos"),
+                                    icon: const Icon(Icons.card_giftcard), 
+                                    label: const Text("Productos"),
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.orange,
                                       minimumSize: const Size(190, 140),
@@ -197,8 +826,8 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                                   const SizedBox(width: 20),
                                   ElevatedButton.icon(
                                     onPressed: () => Navigator.pushNamed(context, '/ventas'), 
-                                    icon: Icon(Icons.credit_card), 
-                                    label: Text("Ventas"),
+                                    icon: const Icon(Icons.credit_card), 
+                                    label: const Text("Ventas"),
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.red,
                                       minimumSize: const Size(190, 140),
@@ -213,8 +842,8 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                                 children: [
                                   ElevatedButton.icon(
                                     onPressed: () => Navigator.pushNamed(context, '/categories'), 
-                                    icon: Icon(Icons.category), 
-                                    label: Text("Categorias"),
+                                    icon: const Icon(Icons.category), 
+                                    label: const Text("Categorias"),
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.purple,
                                       minimumSize: const Size(190, 140),
@@ -224,8 +853,8 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                                   const SizedBox(width: 20),
                                   ElevatedButton.icon(
                                     onPressed: () => Navigator.pushNamed(context, '/empleados'), 
-                                    icon: Icon(Icons.work), 
-                                    label: Text("Empleados"),
+                                    icon: const Icon(Icons.work), 
+                                    label: const Text("Empleados"),
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.black26,
                                       minimumSize: const Size(190, 140),

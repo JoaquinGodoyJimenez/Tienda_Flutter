@@ -18,4 +18,18 @@ class VentaApi {
     }
     return null;
   }
+
+  Future<void> deleteVenta(int id) async {
+    try {
+      final url = 'https://mrjc-tienda.000webhostapp.com/ws/venta_ws.php?id=$id';
+      final response = await dio.delete(url);
+      if (response.statusCode == 200) {
+        print('Venta eliminada con éxito');
+      } else {
+        print('Error al eliminar la venta. Código: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Excepción al eliminar la venta: $e');
+    }
+  }
 }

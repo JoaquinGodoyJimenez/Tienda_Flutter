@@ -18,4 +18,18 @@ class MarcaApi {
     }
     return null;
   }
+  
+  Future<void> deleteMarca(int id) async {
+    try {
+      final url = 'https://mrjc-tienda.000webhostapp.com/ws/marca_ws.php?id=$id';
+      final response = await dio.delete(url);
+      if (response.statusCode == 200) {
+        print('Marca eliminada con éxito');
+      } else {
+        print('Error al eliminar la marca. Código: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Excepción al eliminar la marca: $e');
+    }
+  }
 }

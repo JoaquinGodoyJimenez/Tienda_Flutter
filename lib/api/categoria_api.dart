@@ -18,4 +18,18 @@ class CategoriaApi {
     }
     return null;
   }
+
+  Future<void> deleteCategoria(int id) async {
+    try {
+      final url = 'https://mrjc-tienda.000webhostapp.com/ws/categoria_ws.php?id=$id';
+      final response = await dio.delete(url);
+      if (response.statusCode == 200) {
+        print('Categoría eliminada con éxito');
+      } else {
+        print('Error al eliminar la categoría. Código: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Excepción al eliminar la categoría: $e');
+    }
+  }
 }
